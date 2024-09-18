@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Siris's Wifi Cafe Search</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Find the Best Cafes for Work and Study</h1>
+            <p>Explore work-friendly cafes around the UK with Wi-Fi, comfy seating, and the perfect vibe.</p>
+            <a href="#cafes" class="btn">Start Your Search</a>
+        </div>
+    </section>
+
+    <!-- Filters Section -->
+    <section class="filters">
+        <div class="container">
+            <h2>Filter Options</h2>
+            <form action="/filter" method="get">
+                <label>
+                    <input type="checkbox" name="has_wifi"> Wi-Fi
+                </label>
+                <label>
+                    <input type="checkbox" name="has_sockets"> Sockets
+                </label>
+                <label>
+                    <input type="checkbox" name="can_take_calls"> Can Take Calls
+                </label>
+                <button type="submit">Apply Filters</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Cafe Listings -->
+    <section id="cafes" class="cafes">
+        <div class="container">
+            <h2>Our Recommended Cafes</h2>
+            <div class="grid">
+                {% for cafe in cafes %}
+                    <div class="cafe-card">
+                        <img src="{{ cafe.img_url }}" alt="{{ cafe.name }}">
+                        <h3>{{ cafe.name }}</h3>
+                        <p>Location: {{ cafe.location }}</p>
+                        <p>Seats: {{ cafe.seats }}</p>
+                        <p>Coffee Price: {{ cafe.coffee_price }}</p>
+                        <a href="{{ cafe.map_url }}" target="_blank">View on Map</a>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <!-- Map Section (You will have to embed a map manually or use JavaScript libraries) -->
+    <section id="map">
+        <h2>Map of Cafes</h2>
+        <!-- You can embed Google Maps here -->
+    </section>
+
+</body>
+</html>
